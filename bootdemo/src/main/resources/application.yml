@@ -1,0 +1,29 @@
+spring:
+  #设置开发环境
+  profiles:
+    active: dev
+  #设置数据库连接及连接池
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall?characterEncoding=UTF-8
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    #springboot 2.0 默认连接池hikari,号称java平台最快连接池
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 3000
+      pool-name: ProductHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+  #设置JPA配置--使用hibernate orm框架
+  jpa:
+    database: mysql
+    hibernate:
+      #ddl-auto：一般使用create或者update，create无论如何都创建新表覆盖旧表，update：如果没有就创建，有表就更新
+      #所以，一般使用update居多
+      ddl-auto: update
+    show-sql: true
